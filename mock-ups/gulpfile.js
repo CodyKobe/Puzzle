@@ -1,6 +1,6 @@
-var gulp = require('gulp'); // ZAŁACZANIE GULPA
-var sass = require('gulp-sass'); // ZAŁĄCZANIE PACZKI SASS, która kompiluje sasy (scss do css)
-var sourceMaps = require('gulp-sourcemaps'); // ZAŁĄCZENIE PACZKI SOURCEMAPS
+const gulp = require('gulp'); // ZAŁACZANIE GULPA
+const sass = require('gulp-sass'); // ZAŁĄCZANIE PACZKI SASS, która kompiluje sasy (scss do css)
+const sourceMaps = require('gulp-sourcemaps'); // ZAŁĄCZENIE PACZKI SOURCEMAPS
 
 
 
