@@ -1,13 +1,17 @@
 import React from 'react';
 
 class About extends React.Component{
+    constructor(props){
+        super(props)
+
+    }
+
     render(){
-        return <div>
-            O nas
-            <p>
-                Lorem ipsum
-            </p>
-        </div>;
+        return (
+            <footer>
+                Copyright &copy; 2017
+            </footer>
+        )
     }
 }
 

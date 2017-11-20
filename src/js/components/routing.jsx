@@ -1,6 +1,6 @@
 import React from 'react';
 import {App} from './app.jsx';
-import {About} from './about.jsx';
+import {About} from './footer.jsx';
 import {NotFound} from './notFound.jsx';
 import {Test} from './test.jsx';
 import {Navigation} from './navigation.jsx';
