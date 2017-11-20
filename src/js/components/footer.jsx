@@ -1,13 +1,13 @@
 import React from 'react';
 
-class About extends React.Component{
+class Footer extends React.Component{
     constructor(props){
         super(props)
 
     }
 
     render(){
-        return (
+        return(
             <footer>
                 Copyright &copy; 2017
             </footer>
@@ -15,4 +15,4 @@ class About extends React.Component{
     }
 }
 
-export {About}
+export {Footer}

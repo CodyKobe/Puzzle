@@ -3,7 +3,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 require('es6-promise').polyfill();
 
 module.exports = {
@@ -13,11 +12,9 @@ module.exports = {
         path: __dirname,
         filename: './js/app.js'
     },
-
     plugins: [
         new ExtractTextPlugin('./css/app.css')
     ],
-
     module: {
         loaders: [
             {
