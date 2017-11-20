@@ -6,6 +6,7 @@ import {About} from './about.jsx';
 class App extends React.Component {
     constructor(props) {
         super(props);
+
     }
 
 }
