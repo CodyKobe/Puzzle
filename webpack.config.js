@@ -15,6 +15,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('./css/app.css')
     ],
+
     module: {
         loaders: [
             {
