@@ -1,8 +1,9 @@
 'use strict';
 
-const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 require('es6-promise').polyfill();
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
         path: __dirname,
         filename: './js/app.js'
     },
+
     plugins: [
         new ExtractTextPlugin('./css/app.css')
     ],
@@ -21,18 +23,29 @@ module.exports = {
             {
                 test: /\.jsx?$/,  exclude: /node_modules/,
                 loader: 'babel-loader',
-                query: { presets: ['es2015', 'stage-2', 'react'] }
+                query: { presets: ['es2015', 'stage-2' , 'react'] }
             },
             {
                 test: /\.scss$/,
-                loader: "style-loader!css-loader!sass-loader"
-            }
+                loader: "style-loader!css-loader?url=false!sass-loader"
+            },
+            { test: /\.svg$/, loader: 'svg-loader?pngScale=2' },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]'
+                }  
+            },
         ],
+
     },
+
     stats: {
         // Colored output
         colors: true
     },
+
     // Create Sourcemaps for the bundle
-    devtool: 'source-map'
+    // devtool: 'source-map'
 };
