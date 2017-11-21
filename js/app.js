@@ -22213,7 +22213,7 @@ var App = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'tile fifteen' },
+                        { className: 'tile empty-tile' },
                         '15'
                     )
                 ),
@@ -22373,7 +22373,7 @@ exports = module.exports = __webpack_require__(191)(undefined);
 
 
 // module
-exports.push([module.i, "/* tiny reset */\n* {\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%; }\n\n/* body */\nbody {\n  font-family: sans-serif;\n  background: url(" + __webpack_require__(82) + ");\n  filter: black;\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nheader {\n  margin: auto;\n  padding: 48px;\n  text-align: center; }\n\n.container {\n  width: 800px;\n  background: url(" + __webpack_require__(82) + ");\n  border: 2px solid blue;\n  box-sizing: content-box;\n  height: 480px;\n  margin: auto;\n  color: white;\n  display: flex;\n  justify-content: flex-start;\n  align-items: flex-start;\n  flex-wrap: wrap; }\n\n.tile {\n  border: 1px solid blue;\n  width: 160px;\n  height: 160px; }\n\n.fifteen {\n  background: lightgrey; }\n\nfooter {\n  margin: auto;\n  padding: 64px;\n  text-align: center;\n  font-weight: bold; }\n", ""]);
+exports.push([module.i, "/* tiny reset */\n* {\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%; }\n\n/* body */\nbody {\n  font-family: sans-serif;\n  background: url(" + __webpack_require__(82) + ");\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nheader {\n  margin: auto;\n  padding: 48px;\n  text-align: center; }\n\n.container {\n  width: 800px;\n  background: url(" + __webpack_require__(82) + ");\n  border: 2px solid navy;\n  box-sizing: content-box;\n  height: 480px;\n  margin: auto;\n  color: white;\n  display: flex;\n  justify-content: flex-start;\n  align-items: flex-start;\n  flex-wrap: wrap; }\n\n.tile {\n  border: 1px solid navy;\n  width: 160px;\n  height: 160px; }\n\n.empty-tile {\n  background: lightgrey; }\n\nfooter {\n  margin: auto;\n  padding: 64px;\n  text-align: center;\n  font-weight: bold; }\n", ""]);
 
 // exports
 

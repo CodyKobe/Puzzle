@@ -1,4 +1,4 @@
-const gulp = require('gulp'); // ZAŁACZANIE GULPA
+const gulp = require('gulp'); // ZAŁĄCZANIE GULPA
 const sass = require('gulp-sass'); // ZAŁĄCZANIE PACZKI SASS, która kompiluje sasy (scss do css)
 const sourceMaps = require('gulp-sourcemaps'); // ZAŁĄCZENIE PACZKI SOURCEMAPS
 
@@ -6,7 +6,7 @@ const sourceMaps = require('gulp-sourcemaps'); // ZAŁĄCZENIE PACZKI SOURCEMAPS
 
 //ZADANIE SASS - zamienia scss na css
 gulp.task ('sass', function() {
-    return gulp.src('*.scss') // wskazujemy skąd brać pliki scss - /**/ ze wszystkich podfolderach *.scss - wszystkie *.scss
+    return gulp.src('*.scss') //wskazujemy skąd brać pliki scss - /**/ ze wszystkich podfolderach *.scss - wszystkie *.scss
         .pipe(sourceMaps.init()) //zaczyna działanie sourcemaps
         .pipe(sass({
             outputStyle: 'expanded'
