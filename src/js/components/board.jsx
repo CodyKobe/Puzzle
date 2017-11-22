@@ -70,22 +70,12 @@ class Board extends React.Component {
         super(props);
 
         this.state = {
-            var: 'value',
-            numberOfTiles: 14,
-
-            top: 0,
-            left: 0,
-
-            tilesX: 5,
-            tilesY: 3,
-
-            style: {
-                position: 'relative'
-            },
 
             tilesTab : [],
-            emptyPosition: {}
-        };
+            emptyPosition: {},
+            tilesX: 5,
+            tilesY: 3
+        }
     }
 
     componentDidMount() {
@@ -126,22 +116,39 @@ class Board extends React.Component {
             x : emptyX-divPositionFromLeft,
             y : emptyY-divPositionFromTop
         };
-        console.log(this.state);
+        console.log(this);
 
         if( direction.x === 0 || direction.y === 0 ) {
             console.log('poprawna kolumna lub wiersz');
 
             if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
-                console.log('to sąsiednie pole!');
+                // console.log('to sąsiednie pole!');
+
                 let newTab = this.state.tilesTab.slice();
-                newTab[myKey] = {
-                    state : {
-                        position : {
-                            m : emptyX,
-                            n : emptyY
+
+                console.log(newTab[myKey]);
+
+                
+                this.setState({
+                    tilesTab[myKey]: {
+                        props : {
+                            position : {
+                                m : emptyX,
+                                n : emptyY
+                            }
                         }
                     }
-                };
+                });
+
+                // newTab[myKey] = {
+                //     props : {
+                //         position : {
+                //             m : emptyX,
+                //             n : emptyY
+                //         }
+                //     }
+                // };
+
                 this.setState({
                     emptyPosition: {
                         m: divPositionFromLeft,
@@ -153,13 +160,6 @@ class Board extends React.Component {
 
             }
         }
-
-    };
-
-    crossTheBorder = (tileX, tileY) => {
-        if( tileX<0 || tileX>=5 || tileY<0 || tileY>=3 )
-            return true;
-        return false;
     };
 
     generatePool = () => {
