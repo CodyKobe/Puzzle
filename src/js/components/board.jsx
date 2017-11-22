@@ -9,14 +9,14 @@ class Tile extends React.Component {
             tileNumberFromLeft : this.props.tileNumberFromLeft,
             tileNumberFromTop  : this.props.tileNumberFromTop,
 
-            divX : this.props.position.m * 160,
-            divY : this.props.position.n * 160,
+            divX : this.props.position.fromLeft * 160,
+            divY : this.props.position.fromTop * 160,
 
             imageStartX : this.props.tileNumberFromLeft * 160,
             imageStartY : this.props.tileNumberFromTop * 160,
 
-            divPositionFromLeft : this.props.position.m,
-            divPositionFromTop  : this.props.position.n,
+            divPositionFromLeft : this.props.position.fromLeft,
+            divPositionFromTop  : this.props.position.fromTop,
 
             myKey : this.props.myKey,
         };
@@ -50,8 +50,8 @@ class Tile extends React.Component {
                         'inset -1px -1px 1px 1px aquamarine',
         };
 
-        if( this.props.position.m === this.props.empty.m &&
-            this.props.position.n === this.props.empty.n ) {
+        if( this.props.position.fromLeft === this.props.empty.fromLeft &&
+            this.props.position.fromTop === this.props.empty.fromTop ) {
             style.background = 'grey';
         }
         return(
@@ -137,8 +137,8 @@ class Board extends React.Component {
             for (let i = 0; i < this.state.tilesX; i++ ) {
 
                 let coordinates = {
-                    m: i,
-                    n: j
+                    fromLeft: i,
+                    fromTop: j
                 };
                 randomTiles.push(coordinates);
             }
@@ -158,12 +158,12 @@ class Board extends React.Component {
 
     handleClick = (divPositionFromLeft, divPositionFromTop, myKey) => {
 
-        let emptyX = this.state.emptyPosition.m;
-        let emptyY = this.state.emptyPosition.n;
+        let emptyX = this.state.emptyPosition.fromLeft;
+        let emptyY = this.state.emptyPosition.fromTop;
 
         const direction = {
-            x : emptyX-divPositionFromLeft,
-            y : emptyY-divPositionFromTop
+            x : emptyX - divPositionFromLeft,
+            y : emptyY - divPositionFromTop
         };
 
         if( direction.x === 0 || direction.y === 0 ) {
@@ -172,16 +172,16 @@ class Board extends React.Component {
 
                 let newTab = this.state.tilesTab.slice();
 
-                newTab[myKey].props.position.m = emptyX;
-                newTab[myKey].props.position.n = emptyY;
+                newTab[myKey].props.position.fromLeft = emptyX;
+                newTab[myKey].props.position.fromTop = emptyY;
 
 
                 console.log(myKey);
 
                 this.setState({
                     emptyPosition : {
-                        m : divPositionFromLeft,
-                        n : divPositionFromTop,
+                        fromLeft : divPositionFromLeft,
+                        fromTop : divPositionFromTop,
                     },
                     tilesTab : newTab
                 })
