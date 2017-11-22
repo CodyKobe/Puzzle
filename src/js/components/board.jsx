@@ -7,13 +7,13 @@ class Tile extends React.Component {
 
         this.state = {
             tileNumberFromLeft : this.props.tileNumberFromLeft,
-            tileNumberFromTop  : this.props.j,
+            tileNumberFromTop  : this.props.tileNumberFromTop,
 
             divX : this.props.position.m * 160,
             divY : this.props.position.n * 160,
 
             imageStartX : this.props.tileNumberFromLeft * 160,
-            imageStartY : this.props.j * 160,
+            imageStartY : this.props.tileNumberFromTop * 160,
 
             divPositionFromLeft : this.props.position.m,
             divPositionFromTop  : this.props.position.n,
@@ -153,10 +153,10 @@ class Board extends React.Component {
         const randomTiles = this.randomTilesPosition();
         let emptyPosition = {};
 
-        for(let i = 0; i<this.state.tilesX; i++ ){
-            for(let j = 0; j<this.state.tilesY; j++ ){
+        for(let tileNumberFromLeft = 0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
+            for(let tileNumberFromTop = 0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
 
-                let key = i*3+j;
+                let key = tileNumberFromLeft*3+tileNumberFromTop;
                 let position = randomTiles[key];
                 let empty = false;
                 if( key === 14 ) {
@@ -165,7 +165,7 @@ class Board extends React.Component {
                 }
 
                 tilesTab.push(
-                    <Tile key={key} tileNumberFromLeft={i} j={j}
+                    <Tile key={key} tileNumberFromLeft={tileNumberFromLeft} tileNumberFromTop={tileNumberFromTop}
                           position={position}
                           empty={empty} myKey={key}
                           callbackInfo={ this.handleClick }
