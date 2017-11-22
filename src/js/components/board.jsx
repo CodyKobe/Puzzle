@@ -23,8 +23,12 @@ class Tile extends React.Component {
 
     }
     clickOnTile = () => {
-        if ( typeof this.props.callbackInfo === 'function' ) {
-            this.props.callbackInfo(this.state.divPositionFromLeft, this.state.divPositionFromTop);
+        if( typeof this.props.callbackInfo === 'function' ) {
+            this.props.callbackInfo(
+                this.state.divPositionFromLeft,
+                this.state.divPositionFromTop,
+                this.state.myKey
+            );
         }
     };
     render(){
@@ -46,7 +50,8 @@ class Tile extends React.Component {
                         'inset -1px -1px 1px 1px aquamarine',
         };
 
-        if( this.props.empty === true ) {
+        if( this.props.position.m === this.props.empty.m &&
+            this.props.position.n === this.props.empty.n ) {
             style.background = 'grey';
         }
         return(
@@ -112,29 +117,39 @@ class Board extends React.Component {
         return randomTiles;
     };
 
-    handleClick = (responseX, responseY) => {
+    handleClick = (divPositionFromLeft, divPositionFromTop, myKey) => {
 
         let emptyX = this.state.emptyPosition.m;
         let emptyY = this.state.emptyPosition.n;
 
         const direction = {
-            x : emptyX-responseX,
-            y : emptyY-responseY
+            x : emptyX-divPositionFromLeft,
+            y : emptyY-divPositionFromTop
         };
+        console.log(this.state);
 
         if( direction.x === 0 || direction.y === 0 ) {
             console.log('poprawna kolumna lub wiersz');
+
             if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
                 console.log('to sąsiednie pole!');
+                let newTab = this.state.tilesTab.slice();
+                newTab[myKey] = {
+                    state : {
+                        position : {
+                            m : emptyX,
+                            n : emptyY
+                        }
+                    }
+                };
+                this.setState({
+                    emptyPosition: {
+                        m: divPositionFromLeft,
+                        n: divPositionFromTop,
+                    },
+                    tilesTab : newTab
 
-                console.log(this.state.tilesTab)
-
-                // this.setState({
-                //     emptyPosition : {
-                //         m: responseX,
-                //         n: responseY,
-                //     }
-                // })
+                })
 
             }
         }
@@ -153,21 +168,22 @@ class Board extends React.Component {
         const randomTiles = this.randomTilesPosition();
         let emptyPosition = {};
 
-        for(let tileNumberFromLeft = 0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
-            for(let tileNumberFromTop = 0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
+        for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
+            for(let tileNumberFromTop=0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
 
-                let key = tileNumberFromLeft*3+tileNumberFromTop;
+                let key = tileNumberFromLeft*3 + tileNumberFromTop;
                 let position = randomTiles[key];
-                let empty = false;
                 if( key === 14 ) {
-                    empty = true;
-                    emptyPosition = position;
+                    emptyPosition = Object.assign({}, position);
                 }
 
                 tilesTab.push(
-                    <Tile key={key} tileNumberFromLeft={tileNumberFromLeft} tileNumberFromTop={tileNumberFromTop}
+                    <Tile key={key}
+                          tileNumberFromLeft={tileNumberFromLeft}
+                          tileNumberFromTop={tileNumberFromTop}
                           position={position}
-                          empty={empty} myKey={key}
+                          myKey={key}
+                          empty={emptyPosition}
                           callbackInfo={ this.handleClick }
                     />
                 )
