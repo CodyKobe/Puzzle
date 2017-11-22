@@ -63,7 +63,8 @@ class Tile extends React.Component {
         )
     }
 }
-// *****************************************************
+
+// *************************************************************************
 
 class Board extends React.Component {
     constructor(props) {
@@ -78,68 +79,24 @@ class Board extends React.Component {
         }
     }
 
+    render(){
+
+        let tilesMap = [];
+        // if(this.state.tilesTab!=undefined && this.state.tilesTab.length!=0){
+            tilesMap = this.state.tilesTab.map( tile => {
+                return tile;
+        });
+
+        return(
+            <div className="board" >
+                {tilesMap}
+            </div>
+        )
+    }
+
     componentDidMount() {
         this.generatePool();
     }
-
-    randomTilesPosition = () => {
-        const randomTiles = [];
-        for (let j = 0; j < this.state.tilesY; j++) {
-            for (let i = 0; i < this.state.tilesX; i++) {
-
-                let coordinates = {
-                    m: i,
-                    n: j
-                };
-                randomTiles.push(coordinates);
-            }
-        }
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                // podmiana elementów
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-        // work on object
-        shuffleArray(randomTiles);
-        return randomTiles;
-    };
-
-    handleClick = (divPositionFromLeft, divPositionFromTop, myKey) => {
-
-        let emptyX = this.state.emptyPosition.m;
-        let emptyY = this.state.emptyPosition.n;
-
-        const direction = {
-            x : emptyX-divPositionFromLeft,
-            y : emptyY-divPositionFromTop
-        };
-        
-        if( direction.x === 0 || direction.y === 0 ) {
-            if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
-                console.log('to sąsiednie pole');
-
-                let newTab = this.state.tilesTab.slice();
-
-                newTab[myKey].props.position.m = emptyX;
-                newTab[myKey].props.position.n = emptyY;
-
-                console.log(this.state.tilesTab);
-                 console.log(myKey);
-                console.log(newTab);
-                //
-                // this.setState({
-                //     emptyPosition: {
-                //         m: divPositionFromLeft,
-                //         n: divPositionFromTop,
-                //     },
-                //     tilesTab : newTab
-                // })
-            }
-        }
-    };
 
     generatePool = () => {
 
@@ -147,8 +104,8 @@ class Board extends React.Component {
         const randomTiles = this.randomTilesPosition();
         let emptyPosition = {};
 
-            for(let tileNumberFromTop=0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
-                for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
+        for(let tileNumberFromTop=0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
+            for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
 
                 let key = tileNumberFromTop*5 + tileNumberFromLeft;
                 let position = randomTiles[key];
@@ -172,25 +129,65 @@ class Board extends React.Component {
             tilesTab : tilesTab,
             emptyPosition : emptyPosition
         });
-
     };
 
-    render(){
+    randomTilesPosition = () => {
+        const randomTiles = [];
+        for (let j = 0; j < this.state.tilesY; j++ ) {
+            for (let i = 0; i < this.state.tilesX; i++ ) {
 
-        let tilesMap;
-        if(this.state.tilesTab!=undefined && this.state.tilesTab.length!=0){
-            tilesMap = this.state.tilesTab.map( tile => {
-                return tile;
-            });
+                let coordinates = {
+                    m: i,
+                    n: j
+                };
+                randomTiles.push(coordinates);
+            }
         }
 
-        return(
-            <div className="board" style={this.state.style} >
-                {tilesMap}
-            </div>
-        )
-    }
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i-- ) {
+                let j = Math.floor( Math.random() * (i + 1) );
+                // podmiana elementów
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        // work on array
+        shuffleArray(randomTiles);
+        return randomTiles;
+    };
 
+    handleClick = (divPositionFromLeft, divPositionFromTop, myKey) => {
+
+        let emptyX = this.state.emptyPosition.m;
+        let emptyY = this.state.emptyPosition.n;
+
+        const direction = {
+            x : emptyX-divPositionFromLeft,
+            y : emptyY-divPositionFromTop
+        };
+
+        if( direction.x === 0 || direction.y === 0 ) {
+            if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
+                console.log('to sąsiednie pole');
+
+                let newTab = this.state.tilesTab.slice();
+
+                newTab[myKey].props.position.m = emptyX;
+                newTab[myKey].props.position.n = emptyY;
+
+
+                console.log(myKey);
+
+                this.setState({
+                    emptyPosition : {
+                        m : divPositionFromLeft,
+                        n : divPositionFromTop,
+                    },
+                    tilesTab : newTab
+                })
+            }
+        }
+    };
 
 }
 export {Board}
