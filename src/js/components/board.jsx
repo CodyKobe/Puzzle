@@ -84,8 +84,8 @@ class Board extends React.Component {
 
     randomTilesPosition = () => {
         const randomTiles = [];
-        for (let i = 0; i < this.state.tilesX; i++) {
-            for (let j = 0; j < this.state.tilesY; j++) {
+        for (let j = 0; j < this.state.tilesY; j++) {
+            for (let i = 0; i < this.state.tilesX; i++) {
 
                 let coordinates = {
                     m: i,
@@ -116,48 +116,27 @@ class Board extends React.Component {
             x : emptyX-divPositionFromLeft,
             y : emptyY-divPositionFromTop
         };
-        console.log(this);
-
+        
         if( direction.x === 0 || direction.y === 0 ) {
-            console.log('poprawna kolumna lub wiersz');
-
             if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
-                // console.log('to sąsiednie pole!');
+                console.log('to sąsiednie pole');
 
                 let newTab = this.state.tilesTab.slice();
 
-                console.log(newTab[myKey]);
+                newTab[myKey].props.position.m = emptyX;
+                newTab[myKey].props.position.n = emptyY;
 
-                
-                this.setState({
-                    tilesTab[myKey]: {
-                        props : {
-                            position : {
-                                m : emptyX,
-                                n : emptyY
-                            }
-                        }
-                    }
-                });
-
-                // newTab[myKey] = {
-                //     props : {
-                //         position : {
-                //             m : emptyX,
-                //             n : emptyY
-                //         }
-                //     }
-                // };
-
-                this.setState({
-                    emptyPosition: {
-                        m: divPositionFromLeft,
-                        n: divPositionFromTop,
-                    },
-                    tilesTab : newTab
-
-                })
-
+                console.log(this.state.tilesTab);
+                 console.log(myKey);
+                console.log(newTab);
+                //
+                // this.setState({
+                //     emptyPosition: {
+                //         m: divPositionFromLeft,
+                //         n: divPositionFromTop,
+                //     },
+                //     tilesTab : newTab
+                // })
             }
         }
     };
@@ -168,10 +147,10 @@ class Board extends React.Component {
         const randomTiles = this.randomTilesPosition();
         let emptyPosition = {};
 
-        for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
             for(let tileNumberFromTop=0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
+                for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
 
-                let key = tileNumberFromLeft*3 + tileNumberFromTop;
+                let key = tileNumberFromTop*5 + tileNumberFromLeft;
                 let position = randomTiles[key];
                 if( key === 14 ) {
                     emptyPosition = Object.assign({}, position);
@@ -199,7 +178,7 @@ class Board extends React.Component {
     render(){
 
         let tilesMap;
-        if( this.state.tilesTab!=undefined && this.state.tilesTab.length!=0 ) {
+        if(this.state.tilesTab!=undefined && this.state.tilesTab.length!=0){
             tilesMap = this.state.tilesTab.map( tile => {
                 return tile;
             });
@@ -211,5 +190,7 @@ class Board extends React.Component {
             </div>
         )
     }
+
+
 }
 export {Board}
