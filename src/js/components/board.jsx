@@ -1,25 +1,32 @@
 import React from 'react';
 
 import myImage from "../../../img/04134_sassolungo_800x480.jpg";
-class Tile extends React.Component{
+class Tile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tileNumberFromLeft : this.props.i,
+            tileNumberFromLeft : this.props.tileNumberFromLeft,
             tileNumberFromTop  : this.props.j,
 
             divX : this.props.position.m * 160,
             divY : this.props.position.n * 160,
 
-            imageStartX : this.props.i * 160,
+            imageStartX : this.props.tileNumberFromLeft * 160,
             imageStartY : this.props.j * 160,
+
+            divPositionFromLeft : this.props.position.m,
+            divPositionFromTop  : this.props.position.n,
 
             myKey : this.props.myKey,
         };
 
     }
-
+    clickOnTile = () => {
+        if ( typeof this.props.callbackInfo === 'function' ) {
+            this.props.callbackInfo(this.state.divPositionFromLeft, this.state.divPositionFromTop);
+        }
+    };
     render(){
         let style = {
             position : 'absolute',
@@ -43,9 +50,7 @@ class Tile extends React.Component{
             style.background = 'grey';
         }
         return(
-            <div style={style}
-                 className="tile"
-            >
+            <div style={style} className="tile" onClick={this.clickOnTile} >
                 {this.state.tileNumberFromLeft}
                 ,&nbsp;
                 {this.state.tileNumberFromTop}
@@ -53,8 +58,9 @@ class Tile extends React.Component{
         )
     }
 }
-// -----
-class Board extends React.Component{
+// *****************************************************
+
+class Board extends React.Component {
     constructor(props) {
         super(props);
 
@@ -70,9 +76,17 @@ class Board extends React.Component{
 
             style: {
                 position: 'relative'
-            }
-        }
+            },
+
+            tilesTab : [],
+            emptyPosition: {}
+        };
     }
+
+    componentDidMount() {
+        this.generatePool();
+    }
+
     randomTilesPosition = () => {
         const randomTiles = [];
         for (let i = 0; i < this.state.tilesX; i++) {
@@ -89,6 +103,7 @@ class Board extends React.Component{
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 let j = Math.floor(Math.random() * (i + 1));
+                // podmiana elementów
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
@@ -97,14 +112,46 @@ class Board extends React.Component{
         return randomTiles;
     };
 
-    handleClick = () => {
-        console.log('działa!');
+    handleClick = (responseX, responseY) => {
+
+        let emptyX = this.state.emptyPosition.m;
+        let emptyY = this.state.emptyPosition.n;
+
+        const direction = {
+            x : emptyX-responseX,
+            y : emptyY-responseY
+        };
+
+        if( direction.x === 0 || direction.y === 0 ) {
+            console.log('poprawna kolumna lub wiersz');
+            if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
+                console.log('to sąsiednie pole!');
+
+                console.log(this.state.tilesTab)
+
+                // this.setState({
+                //     emptyPosition : {
+                //         m: responseX,
+                //         n: responseY,
+                //     }
+                // })
+
+            }
+        }
+
     };
 
-    render(){
+    crossTheBorder = (tileX, tileY) => {
+        if( tileX<0 || tileX>=5 || tileY<0 || tileY>=3 )
+            return true;
+        return false;
+    };
+
+    generatePool = () => {
 
         const tilesTab = [];
         const randomTiles = this.randomTilesPosition();
+        let emptyPosition = {};
 
         for(let i = 0; i<this.state.tilesX; i++ ){
             for(let j = 0; j<this.state.tilesY; j++ ){
@@ -112,29 +159,38 @@ class Board extends React.Component{
                 let key = i*3+j;
                 let position = randomTiles[key];
                 let empty = false;
-                if( key === 14 ) empty = true;
+                if( key === 14 ) {
+                    empty = true;
+                    emptyPosition = position;
+                }
 
                 tilesTab.push(
-                    <Tile key={key} i={i} j={j}
+                    <Tile key={key} tileNumberFromLeft={i} j={j}
                           position={position}
                           empty={empty} myKey={key}
-                          onClick={ this.handleClick }  />
+                          callbackInfo={ this.handleClick }
+                    />
                 )
             }
         }
-
-        let crossTheBorder = (tileX, tileY) => {
-            if( tileX<0||tileX>=5||tileY<0||tileY>=3 )
-                return true;
-            return false;
-        };
-
-        const tilesMap = tilesTab.map( tile => {
-            return tile;
+        this.setState({
+            tilesTab : tilesTab,
+            emptyPosition : emptyPosition
         });
 
+    };
+
+    render(){
+
+        let tilesMap;
+        if( this.state.tilesTab!=undefined && this.state.tilesTab.length!=0 ) {
+            tilesMap = this.state.tilesTab.map( tile => {
+                return tile;
+            });
+        }
+
         return(
-            <div className="board" style={this.state.style}>
+            <div className="board" style={this.state.style} >
                 {tilesMap}
             </div>
         )

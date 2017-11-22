@@ -13,7 +13,7 @@ module.exports = {
         path: __dirname,
         filename: './js/app.js'
     },
-
+    // devtool: 'eval-source-map',
     plugins: [
         new ExtractTextPlugin('./css/app.css')
     ],
@@ -47,5 +47,5 @@ module.exports = {
     },
 
     // Create Sourcemaps for the bundle
-    // devtool: 'source-map'
+    devtool: 'source-map'
 };
