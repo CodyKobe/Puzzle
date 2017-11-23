@@ -79,14 +79,14 @@ class Board extends React.Component {
         }
     }
 
-    render(){
+    render() {
 
         let tilesMap = [];
-        // if(this.state.tilesTab!=undefined && this.state.tilesTab.length!=0){
+        if( this.state.tilesTab!==undefined && this.state.tilesTab.length!==0 ) {
             tilesMap = this.state.tilesTab.map( tile => {
                 return tile;
-        });
-
+            })
+        }
         return(
             <div className="board" >
                 {tilesMap}
