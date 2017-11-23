@@ -1,5 +1,4 @@
 import React from 'react';
-
 import myImage from "../../../img/04134_sassolungo_800x480.jpg";
 
 class Tile extends React.Component {
