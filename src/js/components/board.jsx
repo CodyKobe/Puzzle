@@ -19,8 +19,7 @@ class Tile extends React.Component {
             divPositionFromTop  : this.props.position.fromTop,
 
             myKey : this.props.myKey,
-        };
-
+        }
     }
     clickOnTile = () => {
         if( typeof this.props.callbackInfo === 'function' ) {
@@ -28,7 +27,7 @@ class Tile extends React.Component {
                 this.state.divPositionFromLeft,
                 this.state.divPositionFromTop,
                 this.state.myKey
-            );
+            )
         }
     };
     render(){
@@ -47,7 +46,7 @@ class Tile extends React.Component {
             width : '160px',
             height : '160px',
             boxShadow : 'inset  1px  1px 1px 1px white, ' +
-                        'inset -1px -1px 1px 1px aquamarine',
+                        'inset -1px -1px 1px 1px aquamarine'
         };
 
         if( this.props.position.fromLeft === this.props.empty.fromLeft &&
@@ -55,7 +54,7 @@ class Tile extends React.Component {
             style.background = 'grey';
         }
         return(
-            <div style={style} className="tile" onClick={this.clickOnTile} >
+            <div style={style} onClick={this.clickOnTile} >
                 {this.state.tileNumberFromLeft}
                 ,&nbsp;
                 {this.state.tileNumberFromTop}
@@ -128,7 +127,7 @@ class Board extends React.Component {
         this.setState({
             tilesTab : tilesTab,
             emptyPosition : emptyPosition
-        });
+        })
     };
 
     randomTilesPosition = () => {
@@ -167,14 +166,13 @@ class Board extends React.Component {
         };
 
         if( direction.x === 0 || direction.y === 0 ) {
-            if( 1===Math.abs(direction.y) || 1===Math.abs(direction.x) ){
+            if( 1===Math.abs(direction.x) || 1===Math.abs(direction.y) ){
+
                 console.log('to sąsiednie pole');
 
                 let newTab = this.state.tilesTab.slice();
-
                 newTab[myKey].props.position.fromLeft = emptyX;
                 newTab[myKey].props.position.fromTop = emptyY;
-
 
                 console.log(myKey);
 
@@ -187,7 +185,7 @@ class Board extends React.Component {
                 })
             }
         }
-    };
-
+    }
 }
+
 export {Board}

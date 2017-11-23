@@ -1,7 +1,6 @@
 //colors
 $primary-design-color: saddlebrown;
 $secondary-design-color: lightgrey;
-$primary-font-color: purple;
 
 /* tiny reset */
 * {
@@ -24,7 +23,7 @@ body{
   background-repeat: repeat;
 }
 header{
-  margin: -1rem;
+  font-size: 1px;
   padding: 1px;
   text-align: center;
 }
@@ -42,13 +41,13 @@ header{
   align-items: flex-start;
   flex-wrap: wrap;
 }
-.tile{
-  width: 160px;
-  height: 160px;
-}
-.empty-tile{
-  background: $secondary-design-color;
-}
+//.tile{
+//  width: 160px;
+//  height: 160px;
+//}
+//.empty-tile{
+//  background: $secondary-design-color;
+//}
 footer{
   margin: auto;
   padding: 8px;
