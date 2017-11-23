@@ -23,8 +23,7 @@ body{
   background-repeat: repeat;
 }
 header{
-  font-size: 1px;
-  padding: 1px;
+  padding: 16px;
   text-align: center;
 }
 .board{
@@ -34,7 +33,6 @@ header{
   box-sizing: content-box;
   height: 480px;
   margin: auto;
-  //color: $primary-font-color;
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -50,7 +48,7 @@ header{
 //}
 footer{
   margin: auto;
-  padding: 8px;
+  padding: 32px;
   text-align: center;
-  font-weight: bold;
+  //font-weight: bold;
 }
