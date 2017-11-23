@@ -21,6 +21,23 @@ class Tile extends React.Component {
             myKey : this.props.myKey,
         }
     }
+    componentWillReceiveProps(nextProps){
+        this.setState( {
+            tileNumberFromLeft : nextProps.tileNumberFromLeft,
+            tileNumberFromTop  : nextProps.tileNumberFromTop,
+
+            divX : nextProps.position.fromLeft * 160,
+            divY : nextProps.position.fromTop * 160,
+
+            imageStartX : nextProps.tileNumberFromLeft * 160,
+            imageStartY : nextProps.tileNumberFromTop * 160,
+
+            divPositionFromLeft : nextProps.position.fromLeft,
+            divPositionFromTop  : nextProps.position.fromTop,
+
+            myKey : this.props.myKey,
+        })
+    }
     clickOnTile = () => {
         if( typeof this.props.callbackInfo === 'function' ) {
             this.props.callbackInfo(
@@ -70,11 +87,13 @@ class Board extends React.Component {
         super(props);
 
         this.state = {
-
+            isFirstRender: true,
+            randomPositions: [],
             tilesTab : [],
             emptyPosition: {},
             tilesX: 5,
-            tilesY: 3
+            tilesY: 3,
+            kliknietyKafelek: {left:0, top: 0, name: -1}
         }
     }
 
@@ -86,6 +105,8 @@ class Board extends React.Component {
                 return tile;
             })
         }
+        console.log(this.state.emptyPosition)
+        console.log(this.state.kliknietyKafelek)
         return(
             <div className="board" >
                 {tilesMap}
@@ -97,11 +118,12 @@ class Board extends React.Component {
         this.generatePool();
     }
 
-    generatePool = () => {
-
+    generatePool = (clickedELement) => {
+        console.log("Generate Pool")
         const tilesTab = [];
-        const randomTiles = this.randomTilesPosition();
+        const randomTiles =  this.state.randomPositions.length === 0 ? this.randomTilesPosition() : this.state.randomPositions ;
         let emptyPosition = {};
+        console.log(this.state.kliknietyKafelek.name)
 
         for(let tileNumberFromTop=0; tileNumberFromTop<this.state.tilesY; tileNumberFromTop++ ){
             for(let tileNumberFromLeft=0; tileNumberFromLeft<this.state.tilesX; tileNumberFromLeft++ ){
@@ -111,6 +133,15 @@ class Board extends React.Component {
                 if( key === 14 ) {
                     emptyPosition = Object.assign({}, position);
                 }
+
+                if(clickedELement != undefined && key === clickedELement.name) {
+                    console.log("Pozycja ", clickedELement);
+                    position = {
+                        fromLeft: clickedELement.left,
+                        fromTop: clickedELement.top
+                    }
+                }
+
 
                 tilesTab.push(
                     <Tile key={key}
@@ -124,9 +155,12 @@ class Board extends React.Component {
                 )
             }
         }
+
+        console.log(tilesTab)
         this.setState({
             tilesTab : tilesTab,
-            emptyPosition : emptyPosition
+            emptyPosition : emptyPosition,
+            randomPositions: randomTiles
         })
     };
 
@@ -157,32 +191,56 @@ class Board extends React.Component {
 
     handleClick = (divPositionFromLeft, divPositionFromTop, myKey) => {
 
+        // pusty kafelek
         let emptyX = this.state.emptyPosition.fromLeft;
         let emptyY = this.state.emptyPosition.fromTop;
 
+        // kierunek do pustego kafelka
         const direction = {
             x : emptyX - divPositionFromLeft,
             y : emptyY - divPositionFromTop
         };
 
+        // kafelek powinien być sąsiadem
         if( direction.x === 0 || direction.y === 0 ) {
             if( 1===Math.abs(direction.x) || 1===Math.abs(direction.y) ){
 
-                console.log('to sąsiednie pole');
+                console.log('To sąsiedni kafelek!');
 
+                // przygotowanie do edycji tablicy z pozycjami
                 let newTab = this.state.tilesTab.slice();
                 newTab[myKey].props.position.fromLeft = emptyX;
                 newTab[myKey].props.position.fromTop = emptyY;
+    // ------------------------------------------------------------
 
-                console.log(myKey);
+                let  emptyPosition = {
+                        fromLeft : divPositionFromLeft,
+                        fromTop : divPositionFromTop,
+                    }
+                console.log("Klikniety kafelek", myKey);
+                console.log("Pozycja pustego", emptyPosition);
 
                 this.setState({
                     emptyPosition : {
                         fromLeft : divPositionFromLeft,
                         fromTop : divPositionFromTop,
                     },
-                    tilesTab : newTab
+                    kliknietyKafelek: {
+                        left: newTab[myKey].props.position.fromLeft,
+                        top: newTab[myKey].props.position.fromTop,
+                        name: myKey
+                    },
+                    // tilesTab : newTab
                 })
+
+                let  kliknietyKafelek =  {
+                    left:newTab[myKey].props.position.fromLeft,
+                    top:  newTab[myKey].props.position.fromTop,
+                    name: myKey
+                }
+
+                this.generatePool(kliknietyKafelek)
+
             }
         }
     }
