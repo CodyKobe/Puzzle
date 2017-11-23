@@ -17,7 +17,7 @@ html, body {
 body{
   font-family: sans-serif;
   color: white;
-  background: aqua;
+  background: aquamarine;
   //background: url("../../img/04134_sassolungo_800x480.jpg");
   background-size: cover;
   background-repeat: repeat;
@@ -29,8 +29,7 @@ header{
 }
 .board{
   width: 800px;
-  //background: aquamarine; //url("../../img/04134_sassolungo_800x480.jpg");
-  box-shadow: 1px 1px 3px 3px $primary-design-color;
+  box-shadow: 1px 1px 3px 5px $primary-design-color;
   box-sizing: content-box;
   height: 480px;
   margin: auto;
@@ -51,5 +50,4 @@ footer{
   margin: auto;
   padding: 32px;
   text-align: center;
-  //font-weight: bold;
 }

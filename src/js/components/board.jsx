@@ -7,38 +7,38 @@ class Tile extends React.Component {
         super(props);
 
         this.state = {
-            tileNumberFromLeft : this.props.tileNumberFromLeft,
-            tileNumberFromTop  : this.props.tileNumberFromTop,
+            divPositionFromLeft : this.props.position.fromLeft,
+            divPositionFromTop  : this.props.position.fromTop,
 
             divX : this.props.position.fromLeft * 160,
             divY : this.props.position.fromTop  * 160,
 
+            myKey : this.props.myKey,
+
+            tileNumberFromLeft : this.props.tileNumberFromLeft,
+            tileNumberFromTop  : this.props.tileNumberFromTop,
+
             imageStartX : this.props.tileNumberFromLeft * 160,
             imageStartY : this.props.tileNumberFromTop  * 160,
-
-            divPositionFromLeft : this.props.position.fromLeft,
-            divPositionFromTop  : this.props.position.fromTop,
-
-            myKey : this.props.myKey,
         }
     }
 
     componentWillReceiveProps(nextProps){
 
         this.setState({
-            tileNumberFromLeft : nextProps.tileNumberFromLeft,
-            tileNumberFromTop  : nextProps.tileNumberFromTop,
+            divPositionFromLeft : nextProps.position.fromLeft,
+            divPositionFromTop  : nextProps.position.fromTop,
 
             divX : nextProps.position.fromLeft * 160,
             divY : nextProps.position.fromTop  * 160,
 
+            myKey : nextProps.myKey,
+
+            tileNumberFromLeft : nextProps.tileNumberFromLeft,
+            tileNumberFromTop  : nextProps.tileNumberFromTop,
+
             imageStartX : nextProps.tileNumberFromLeft * 160,
             imageStartY : nextProps.tileNumberFromTop  * 160,
-
-            divPositionFromLeft : nextProps.position.fromLeft,
-            divPositionFromTop  : nextProps.position.fromTop,
-
-            myKey : nextProps.myKey,
         })
     }
 
@@ -114,7 +114,7 @@ class Board extends React.Component {
             </div>
         )
     }
-
+    // -------------------------------------------------------------------------
     componentDidMount() {
         this.generateBoard();
     }
@@ -122,7 +122,7 @@ class Board extends React.Component {
 
     generateBoard = () => {
 
-        const randomTilesPositions = this.randomPositions() ;
+        let randomTilesPositions = this.randomPositions() ;
         const tilesTab = [];
         let emptyPosition = {};
 
