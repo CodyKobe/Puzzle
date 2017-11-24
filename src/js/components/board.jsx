@@ -22,7 +22,7 @@ class Tile extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
 
         this.setState({
             divPositionFromLeft : nextProps.position.fromLeft,
@@ -42,7 +42,6 @@ class Tile extends React.Component {
     }
 
     clickOnTile = () => {
-        console.log("klikniety", this.state.myKey)
         if( typeof this.props.callbackInfo === 'function' ) {
             this.props.callbackInfo(
                 this.state.divPositionFromLeft,
@@ -76,11 +75,9 @@ class Tile extends React.Component {
         }
         return(
             <div style={style} onClick={this.clickOnTile} >
-                <h2>
                     {this.state.tileNumberFromLeft},
                     {this.state.tileNumberFromTop} <br/>
                     myKey: {this.state.myKey}
-                </h2>
             </div>
         )
     }
@@ -96,23 +93,19 @@ class Board extends React.Component {
             // tablica z komponentami
             tilesTab : [],
             // pozycja pustego kafelka
-            emptyPosition: {},
+            emptyPosition : {},
             // tablica 15 koordynatów
-            randomizedTilesPositions: [],
-            clickableElement: "",
-            firstRender: true
+            randomizedTilesPositions: []
         }
     }
 
     render() {
-        console.log(this.state)
-
         let tilesMap;
-        //if(this.state.tilesTab!==undefined && this.state.tilesTab.length!==0){
+        if(this.state.tilesTab!==undefined && this.state.tilesTab.length!==0){
             tilesMap = this.state.tilesTab.map( tile => {
                 return tile;
             });
-        // }
+        }
         return(
             <div className="board" >
                 {tilesMap}
@@ -143,17 +136,16 @@ class Board extends React.Component {
                 }
 
                 tilesTab.push(
-                    <Tile key = {key}
-                          tileNumberFromLeft = {tileNumberFromLeft}
-                          tileNumberFromTop = {tileNumberFromTop}
-                          position = {position}
-                          myKey = {key}
+                    <Tile key = { key }
+                          tileNumberFromLeft = { tileNumberFromLeft }
+                          tileNumberFromTop  = { tileNumberFromTop }
+                          position = { position }
+                          myKey = { key }
                           callbackInfo = { this.handleClick }
                     />
                 )
             }
         }
-
         this.setState({
             tilesTab : tilesTab,
             emptyPosition : emptyPosition,
@@ -167,7 +159,6 @@ class Board extends React.Component {
         const tilesTab = [];
         let newPositions = [];
         const randomizedTilesPositions = this.state.randomizedTilesPositions ;
-        console.table(this.state.randomizedTilesPositions)
 
         for(let tileNumberFromTop=0; tileNumberFromTop<3; tileNumberFromTop++ ){
             for(let tileNumberFromLeft=0; tileNumberFromLeft<5; tileNumberFromLeft++ ){
@@ -178,35 +169,32 @@ class Board extends React.Component {
                 if( key === clickedTile.key ) {
                     position = {
                         fromLeft : oldEmpty.left,
-                        fromTop : oldEmpty.top
-                    };
-                    // Pusty kafelek
-                    // Jego pozycję zapiszemy w state
-                    // pos = position;
-
+                        fromTop  : oldEmpty.top
+                    }
                 }
+                // oldEmpty.key zawsze wynosi 14
                 if( key === oldEmpty.key ) {
                     position = {
                         fromLeft : clickedTile.left,
-                        fromTop : clickedTile.top
+                        fromTop  : clickedTile.top
                     }
                 }
                 newPositions.push(position);
 
                 tilesTab.push(
                     <Tile key={ key }
-                          tileNumberFromLeft = {tileNumberFromLeft}
-                          tileNumberFromTop = {tileNumberFromTop}
-                          position = {position}
-                          myKey = {key}
+                          tileNumberFromLeft = { tileNumberFromLeft }
+                          tileNumberFromTop  = { tileNumberFromTop }
+                          position = { position }
+                          myKey = { key }
                           callbackInfo = { this.handleClick }
                     />
                 )
             }
         }
         return {
-            tiles: tilesTab,
-            newPositions: newPositions
+            tiles : tilesTab,
+            newPositions : newPositions
         }
     };
     // -------------------------------------------------------------------------
@@ -225,8 +213,8 @@ class Board extends React.Component {
             }
         }
         function shuffleArray(array) {
-            for (let i=array.length-1; i>0; i-- ) {
-                let j = Math.floor( Math.random() * (i+1) );
+            for(let i=array.length-1; i>0; i-- ) {
+                let j = Math.floor( Math.random()*(i+1) );
                 // podmiana elementów
                 [array[i], array[j]] = [array[j], array[i]];
             }
@@ -237,7 +225,7 @@ class Board extends React.Component {
     };
     // -------------------------------------------------------------------------
 
-    handleClick = (divPositionFromLeft, divPositionFromTop, clickedKey) => {
+    handleClick = ( divPositionFromLeft, divPositionFromTop, clickedKey ) => {
 
         // pusty kafelek
         let emptyX = this.state.emptyPosition.fromLeft;
@@ -257,14 +245,14 @@ class Board extends React.Component {
 
                 // przygotowanie do edycji tablicy z pozycjami
                 let newTab = this.state.tilesTab.slice();
+
                 // wewnątrz nowej tablicy
                 // kliknięty kafelek przesunie się na pozycję ze "state.emptyPosition"
                 newTab[clickedKey].props.position.fromLeft = emptyX;
                 newTab[clickedKey].props.position.fromTop  = emptyY;
-                // pusty kafelek otrzyma pozycję klikniętego
+                // 14 - pusty kafelek - otrzyma pozycję klikniętego
                 newTab[14].props.position.fromLeft = divPositionFromLeft;
                 newTab[14].props.position.fromTop  = divPositionFromTop;
-
 
                 let clickedTile = {
                     left: divPositionFromLeft,
@@ -276,20 +264,21 @@ class Board extends React.Component {
                     top: emptyY,
                     key: 14
                 };
-                let elem = this.refreshBoard(clickedTile, oldEmpty);
+                // !@#$%^&
+                let elem = this.refreshBoard( clickedTile, oldEmpty );
 
                 this.setState({
 
                     // "state.emptyPosition" otrzyma pozycję klikniętego kafelka
                     emptyPosition : {
                         fromLeft : divPositionFromLeft,
-                        fromTop : divPositionFromTop,
+                        fromTop  : divPositionFromTop,
                     },
-                     // starą tablicę zastąpi nowa tablica
-                     tilesTab : elem.tiles,
-                    randomizedTilesPositions: elem.newPositions
-
-                });
+                    // starą tablicę zastąpi nowa tablica
+                    tilesTab : elem.tiles,
+                    // a to nie wiem
+                    randomizedTilesPositions : elem.newPositions
+                })
             }
         }
     }
