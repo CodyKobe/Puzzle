@@ -39,10 +39,12 @@ header{
   align-items: flex-start;
   flex-wrap: wrap;
 }
-//.tile{
-//  width: 160px;
-//  height: 160px;
-//}
+.tile{
+  width: 160px;
+  height: 160px;
+
+  transition: all 1.8s;
+}
 //.empty-tile{
 //  background: $secondary-design-color;
 //}

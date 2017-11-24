@@ -71,10 +71,11 @@ class Tile extends React.Component {
         };
         // ostatni kafelek jest pusty i ma numer 14
         if( this.props.myKey === 14 ) {
-            style.background = 'lightgrey';
+            style.background = 'transparent';
+            style.zIndex = '-2'
         }
         return(
-            <div style={style} onClick={this.clickOnTile} >
+            <div className="tile" style={style} onClick={this.clickOnTile} >
                 {/*{this.state.tileNumberFromLeft},*/}
                 {/*{this.state.tileNumberFromTop} <br/>*/}
                 {/*myKey: {this.state.myKey}*/}
