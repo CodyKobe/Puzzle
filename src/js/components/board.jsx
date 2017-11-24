@@ -75,9 +75,9 @@ class Tile extends React.Component {
         }
         return(
             <div style={style} onClick={this.clickOnTile} >
-                    {this.state.tileNumberFromLeft},
-                    {this.state.tileNumberFromTop} <br/>
-                    myKey: {this.state.myKey}
+                {/*{this.state.tileNumberFromLeft},*/}
+                {/*{this.state.tileNumberFromTop} <br/>*/}
+                {/*myKey: {this.state.myKey}*/}
             </div>
         )
     }
