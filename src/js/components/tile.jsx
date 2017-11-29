@@ -74,7 +74,8 @@ class Tile extends React.Component {
         // ostatni kafelek jest pusty i ma numer 14
         if( this.props.myKey === 14 ) {
             style.background = 'transparent';
-            style.zIndex = '-2'
+            style.zIndex = '-2';
+            style.boxShadow = 'none';
         }
         return(
             <div className="tile" style={style} onClick={this.clickOnTile} >
