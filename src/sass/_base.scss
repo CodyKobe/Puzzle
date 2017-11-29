@@ -13,7 +13,8 @@ html, body {
   font-size: 100%;
   background: black;
 }
-/* body */
+
+/* Components */
 .app{
   font-family: sans-serif;
   color: white;
@@ -44,8 +45,7 @@ header{
 .tile{
   width: 160px;
   height: 160px;
-
-  transition: all 1.8s;
+  transition: all 1.0s;
 }
 footer{
   margin: auto;
