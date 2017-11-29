@@ -1,6 +1,7 @@
 import React from 'react';
 
-import myImage from "../../../img/04134_sassolungo_800x480.jpg";
+let myImage  = getImg();
+export {myImage};
 
 class Tile extends React.Component {
     constructor(props) {
@@ -86,3 +87,23 @@ class Tile extends React.Component {
 }
 
 export {Tile}
+
+function getImg(){
+    let nameArr = [
+        '04081_lagoonnebula_800x480.jpg',
+        '04086_queenstownfrombobspeak_800x480.jpg',
+        '04087_riomaggioreatsunset_800x480.jpg',
+        '04088_thebirthplaceofrivendell_800x480.jpg',
+        '04089_desertstorm_800x480.jpg',
+        '04096_gingerbread_800x480.jpg',
+        '04100_incipientdawn_800x480.jpg',
+        '04112_grosunset_800x480.jpg',
+        '04134_sassolungo_800x480.jpg',
+        '04136_therockatrainier_800x480.jpg',
+        '04139_thefreshairofsaentismountain_800x480.jpg',
+        '04140_coloradobackroad_800x480.jpg'
+    ];
+    let i = Math.floor( Math.random()*12 );
+    return ('../../../img/'+nameArr[i]);
+}
+

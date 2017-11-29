@@ -181,7 +181,7 @@ class Board extends React.Component {
                     top: emptyY,
                     key: 14
                 };
-                // !@#$%
+
                 let elem = this.refreshBoard( clickedTile, oldEmpty );
 
                 this.setState({
