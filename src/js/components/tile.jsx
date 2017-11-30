@@ -90,20 +90,44 @@ export {Tile}
 
 function getImg(){
     let nameArr = [
-        '04081_lagoonnebula_800x480.jpg',
-        '04086_queenstownfrombobspeak_800x480.jpg',
-        '04087_riomaggioreatsunset_800x480.jpg',
-        '04088_thebirthplaceofrivendell_800x480.jpg',
-        '04089_desertstorm_800x480.jpg',
-        '04096_gingerbread_800x480.jpg',
-        '04100_incipientdawn_800x480.jpg',
-        '04112_grosunset_800x480.jpg',
-        '04134_sassolungo_800x480.jpg',
-        '04136_therockatrainier_800x480.jpg',
-        '04139_thefreshairofsaentismountain_800x480.jpg',
-        '04140_coloradobackroad_800x480.jpg'
+        "03832_blandfordroad_800x480.jpg",
+        "03843_morningsunongunungbatur_800x480.jpg",
+        "03856_monacowintercloudspanorama_800x480.jpg",
+        "03872_konttaineninnorthernlight_800x480.jpg",
+        "03878_olympiastadionberlin_800x480.jpg",
+        "03884_hooverdamaerial_800x480.jpg",
+        "03892_the4amcampfire_800x480.jpg",
+        "03903_tauntingeyes_800x480.jpg",
+        "03909_insidebrycecanyon_800x480.jpg",
+        "03919_mesquiteflat_800x480.jpg",
+        "03927_skogafossrawpower_800x480.jpg",
+        "03934_sunsetonsrilanka_800x480.jpg",
+        "03935_empireofthealps_800x480.jpg",
+        "03943_endlesslights_800x480.jpg",
+        "03955_monacofogsummersunrise2015_800x480.jpg",
+        "03966_upondescent_800x480.jpg",
+        "03990_autumncapital_800x480.jpg",
+        "03993_nebulacity_800x480.jpg",
+        "04023_clearskieswithachanceofprotonbombardment_800x480.jpg",
+        "04032_earthrise_800x480.jpg",
+        "04047_hongkongcityafterraining_800x480.jpg",
+        "04068_lameije_800x480.jpg",
+        "04078_tothemountains_800x480.jpg",
+        "04081_lagoonnebula_800x480.jpg",
+        "04082_vermillionlakestars_800x480.jpg",
+        "04086_queenstownfrombobspeak_800x480.jpg",
+        "04087_riomaggioreatsunset_800x480.jpg",
+        "04088_thebirthplaceofrivendell_800x480.jpg",
+        "04089_desertstorm_800x480.jpg",
+        "04096_gingerbread_800x480.jpg",
+        "04100_incipientdawn_800x480.jpg",
+        "04112_grosunset_800x480.jpg",
+        "04134_sassolungo_800x480.jpg",
+        "04136_therockatrainier_800x480.jpg",
+        "04139_thefreshairofsaentismountain_800x480.jpg",
+        "04140_coloradobackroad_800x480.jpg"
     ];
-    let i = Math.floor( Math.random()*12 );
+    let i = Math.floor( Math.random()*36 );
     return ('../../../img/'+nameArr[i]);
 }
 
