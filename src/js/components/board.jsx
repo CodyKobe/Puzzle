@@ -18,13 +18,11 @@ class Board extends React.Component {
 
     render() {
         let tilesMap;
-        if(this.state.tilesTab!==undefined && this.state.tilesTab.length!==0){
-            tilesMap = this.state.tilesTab.map( tile => {
-                return tile;
-            });
+        if( this.state.tilesTab!==undefined && this.state.tilesTab.length!==0 ){
+            tilesMap = this.state.tilesTab.map( tile => tile );
         }
         return(
-            <div className="board" >
+            <div className="board">
                 {tilesMap}
             </div>
         )
