@@ -67,8 +67,8 @@ class Tile extends React.Component {
             backgroundSize : '500%',
             width : '160px',
             height : '160px',
-            boxShadow : 'inset  1px  1px 2px white, ' +
-                        'inset -1px -1px 3px -1px aqua'
+            boxShadow : 'inset  1px  1px 2px -1px white, ' +
+                        'inset -1px -1px 2px -1px aqua'
         };
         // ostatni kafelek jest pusty i ma numer 14
         if( this.props.myKey === 14 ) {

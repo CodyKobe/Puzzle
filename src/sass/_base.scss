@@ -15,8 +15,6 @@ html, body {
  */
 
 .app{
-  // filter: blur(4px);
-
   font-family: sans-serif;
   color: white;
   background-size: cover;
@@ -28,8 +26,7 @@ header{
   text-align: center;
 }
 .board {
-  filter: none;
-  filter: blur(0px);
+  //filter: blur(2px);
 
   background-color: rgba(azure, 0.66);
   box-sizing: content-box;
@@ -39,6 +36,9 @@ header{
   position: relative;
 }
 .tile{
+  filter: none;
+  filter: blur(0px);
+
   width: 160px;
   height: 160px;
   transition: all 1.0s;
