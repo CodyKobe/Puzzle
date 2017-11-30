@@ -7,41 +7,45 @@ html, body {
   padding: 0;
   border: 0;
   font-size: 100%;
-  background: black;
 }
 
 /**
  *  Components
  */
 
-.app{
+.global{
   font-family: sans-serif;
   color: white;
+  min-height: 100vh;
+}
+.background{
   background-size: cover;
   background-repeat: repeat;
   min-height: 100vh;
+  z-index: -10;
+  filter: blur(45px);
 }
 header{
   padding: 16px;
   text-align: center;
 }
 .board {
-  //filter: blur(2px);
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1), 0 0 20px 4px rgba(0,0,0,0.5);
-  background-color: rgba(azure, 0.66);
+  background-color: rgba(black, 0.66);
   box-sizing: content-box;
   width: 800px;
   height: 480px;
   margin: auto;
   position: relative;
+  z-index: 10;
 }
 .tile{
-  filter: none;
+  //filter: none;
   filter: blur(0px);
-
   width: 160px;
   height: 160px;
   transition: all 1.0s;
+  z-index: 20;
 }
 footer{
   margin: auto;

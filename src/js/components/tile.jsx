@@ -1,7 +1,6 @@
 import React from 'react';
 
 let myImage  = getImg();
-export {myImage};
 
 class Tile extends React.Component {
     constructor(props) {
@@ -67,13 +66,13 @@ class Tile extends React.Component {
             backgroundSize : '500%',
             width : '160px',
             height : '160px',
-            boxShadow : 'inset  1px  1px 2px -1px white, ' +
-                        'inset -1px -1px 2px -1px aqua'
+            boxShadow : '  1px  1px 1px 0px white, '
+                      + ' -1px -1px 1px 0px azure'
         };
         // ostatni kafelek jest pusty i ma numer 14
         if( this.props.myKey === 14 ) {
             style.background = 'transparent';
-            style.zIndex = '-2';
+            style.zIndex = '0';
             style.boxShadow = 'none';
         }
         return(
@@ -86,7 +85,8 @@ class Tile extends React.Component {
     }
 }
 
-export {Tile}
+export {Tile};
+export {myImage};
 
 function getImg(){
     let nameArr = [
