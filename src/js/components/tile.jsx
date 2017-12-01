@@ -90,6 +90,26 @@ export {myImage};
 
 function getImg(){
     let nameArr = [
+        "03431_preikestolennorway_800x480.jpg",
+        "03432_sunsetamenity_800x480.jpg",
+        "03433_starsoverjoshuatree_800x480.jpg",
+        "03434_antelopecanyon_800x480.jpg",
+        "03476_midwayhorse_800x480.jpg",
+        "03502_leopard_800x480.jpg",
+        "03550_deathvalley_800x480.jpg",
+        "03568_earthwindandfire_800x480.jpg",
+        "03613_lonesometree_800x480.jpg",
+        "03630_theoasis_800x480.jpg",
+        "03637_radhusettbanastockholm_800x480.jpg",
+        "03685_jonesbeachsunrise_800x480.jpg",
+        "03687_manarola5terre_800x480.jpg",
+        "03722_fallingdarkness_800x480.jpg",
+        "03723_ulurusunrise_800x480.jpg",
+        "03727_morningcolor_800x480.jpg",
+        "03728_nocturnal_800x480.jpg",
+        "03731_trebarwithstrand_800x480.jpg",
+        "03743_enchantingporto_800x480.jpg",
+        "03748_sunriseoverbomboheadland_672x420.jpg",
         "03832_blandfordroad_800x480.jpg",
         "03843_morningsunongunungbatur_800x480.jpg",
         "03856_monacowintercloudspanorama_800x480.jpg",
@@ -127,7 +147,7 @@ function getImg(){
         "04139_thefreshairofsaentismountain_800x480.jpg",
         "04140_coloradobackroad_800x480.jpg"
     ];
-    let i = Math.floor( Math.random()*36 );
+    let i = Math.floor( Math.random()*nameArr.length );
     return ('../../../img/'+nameArr[i]);
 }
 

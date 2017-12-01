@@ -26,12 +26,13 @@ html, body {
   filter: blur(45px);
 }
 header{
-  padding: 16px;
+  padding-top: 32px;
+  padding-bottom: 16px;
   text-align: center;
 }
 .board {
   box-shadow: 0 0 10px 2px rgba(0,0,0,0.1), 0 0 20px 4px rgba(0,0,0,0.5);
-  background-color: rgba(black, 0.66);
+  background-color: rgba(black, 0.55);
   box-sizing: content-box;
   width: 800px;
   height: 480px;
