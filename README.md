@@ -1,13 +1,13 @@
-# React.js Puzzle Game  
+# React Puzzle Game  
   
 ### React.js game  
   
 #### Project installing with node command:  
-`npm start`  
+```npm start```  
   
   
 General styles file:  
-````src/sass/_base.scss````  
+```src/sass/_base.scss```  
   
   
 General jsx:  
