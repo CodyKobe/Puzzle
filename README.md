@@ -2,7 +2,10 @@
   
 ### React.js game  
   
-#### Project installing with node command:  
+#### Project installing with node command:
+```npm i```  
+  
+#### Project starting with node command:
 ```npm start```  
   
   
