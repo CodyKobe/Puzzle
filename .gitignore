@@ -1,5 +1,9 @@
 # Ide
 .idea
+
+# Compiled
+mock-ups/css/main.css
+
 *.xlsx
 
 # Logs
