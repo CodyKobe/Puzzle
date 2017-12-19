@@ -3,7 +3,9 @@
 
 # Compiled
 mock-ups/css/main.css
+js/
 
+# Wallpapers database
 *.xlsx
 
 # Logs
